@@ -1,0 +1,8 @@
+Thing A:
+  - A description
+  - Another description
+  - [Tag1, Tag2]
+Thing B:
+  - Description for B
+  - Other description
+  - Thing A

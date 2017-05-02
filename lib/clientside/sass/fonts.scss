@@ -1,0 +1,32 @@
+@font-face{font-family:'P22Underground-Heavy';
+src:url('fonts/heavy.woff2') format('woff2'),url('fonts/heavy.woff') format('woff'),url('fonts/heavy.ttf') format('truetype');
+font-weight:normal;
+font-style:normal}
+@font-face{font-family:'P22Underground-Demi';
+src:url('fonts/demi.woff2') format('woff2'),url('fonts/demi.woff') format('woff'),url('fonts/demi.ttf') format('truetype');
+font-weight:normal;
+font-style:normal}
+@font-face{font-family:'P22UndergroundCE-Medium';
+src:url('fonts/medium.woff2') format('woff2'),url('fonts/medium.woff') format('woff'),url('fonts/medium.ttf') format('truetype');
+font-weight:normal;
+font-style:normal}
+@font-face{font-family:'P22Underground-Book';
+src:url('fonts/book.woff2') format('woff2'),url('fonts/book.woff') format('woff'),url('fonts/book.ttf') format('truetype');
+font-weight:normal;
+font-style:normal}
+.undergroundHeavy
+{
+	font-family: 'P22Underground-Heavy'
+}
+.undergroundDemi
+{
+	font-family: 'P22Underground-Demi'
+}
+.undergroundMedium
+{
+	font-family: 'P22UndergroundCE-Medium'
+}
+.undergroundBook
+{
+	font-family: 'P22Underground-Book'
+}

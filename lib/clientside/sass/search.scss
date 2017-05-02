@@ -1,0 +1,27 @@
+
+.ac_results
+{
+	@extend ._options;
+z-index:1000;
+text-align:center;
+}
+
+
+.ac_results li
+{
+cursor:pointer;
+strong {
+	font-weight:400;
+	color:$green;
+}
+}
+.ac_results li:last-child
+{
+	border-bottom: 0;  
+}
+
+.ac_noresults
+{
+color:$orange !important;
+cursor:default;
+}

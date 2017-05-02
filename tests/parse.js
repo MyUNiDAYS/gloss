@@ -1,23 +1,42 @@
-﻿var assert = require("chai").assert;
-var gloss = require("../lib/gloss.js");
-var YAML = require('yamljs');
+﻿const assert = require("chai").assert;
+const gloss = require("../core/gloss.js");
+const YAML = require('yamljs');
+const fs = require('fs');
 
-function literal(f) {
+
+var testInput = fs.readFileSync("./tests/testInput.yml","utf8");
+var result = gloss.parse(testInput);
+
+function literal(f) { 
 	return f.toString().
 	replace(/^[^\/]+\/\*!?/, '').
 	replace(/\*\/[^\/]+$/, '');
 }
-
+ 
 describe("parse", function(){
 	it('should handle simple descriptions', function(){
-		var result = gloss.parse(literal(function() {/*!
-Thing: Description of thing
-*/}));
-
-		assert.equal(result[0].term, 'Thing');
-		assert.equal(result[0].desc, 'Description of thing');
+		var termA = result.get('Thing-A');
+		assert.isOk(termA);
+		assert.isAtLeast(termA.descs.indexOf('A description'),0);
+		assert.isAtLeast(termA.descs.indexOf('Another description'),0);
+		
+		
+		var termB = result.get('Thing-B');
+		assert.isOk(termB);
+		assert.isAtLeast(termB.descs.indexOf('Description for B'),0);
 	});
 	
+	it('should handle tags', function(){
+		var term = result.get('Thing-A');
+		assert.isOk(term);
+		assert.isAtLeast(term.tags.indexOf('Tag1'),0);
+		assert.isAtLeast(term.tags.indexOf('Tag2'),0);
+	});   
+
+});
+
+ 
+function a() {
 	
 	it('should handle indented descriptions', function(){
 		var result = gloss.parse(literal(function() {/*!
@@ -121,4 +140,4 @@ Thing C: Description of Thing C
 		assert.equal(result[2].term, 'Thing C');
 		assert.equal(result[2].desc, 'Description of Thing C');
 	});
-});
+}

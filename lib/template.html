@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="clientside/gloss.css" />
+
+</head>
+
+<body>
+	<header>
+		<div class="headerContent">
+			<a id="logo">
+				UNiDAYS <span> GLOSSARY</span>
+			</a>
+			<div id="filters">
+				<form action="#" id="Search">
+					<div>
+						<input type="text" placeholder="Search for a term here" />
+						<img src="clientside/img/magglass.svg" />
+					</div>
+				</form>
+				<div class="tagFilter">
+					<div class="wrapper">
+						<div class="chosenOption"><span>Filter by tag</span>
+							<img class="arrow" src="clientside/img/dropdown.svg" />
+							<img class="cross" src="clientside/img/cross.svg" />
+						</div>
+						<div class="options">
+							<a data-tag="all">All</a>
+							{{#each tags}}
+								<a data-tag="{{tagID}}">{{tag}}</a> 
+							{{/each}}
+						</div>
+					</div>
+				</div>
+				<div class="letterScroller">
+					<div class="wrapper">
+						<div class="chosenOption"><span>Scroll to a letter</span>
+							<img class="arrow" src="clientside/img/dropdown.svg" />
+							<img class="cross" src="clientside/img/cross.svg" />
+						</div>
+						<div class="options">
+							{{#each byLetter}}
+								<a data-letter="{{@key}}">{{@key}}</a> 
+							{{/each}}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<a id="clearFilters">
+			Clear filters <img class="cross" src="clientside/img/cross.svg" />
+		</a>		
+	</header>
+	<section class="definitions">
+		{{#each byLetter}}
+		<section class="letter" data-letter="{{@key}}">
+			<div class="separator" id="separator_{{@key}}">{{@key}}</div>
+			{{#each this}}
+				<article id="Term_{{id}}">
+					<h2>{{name}}</h2>
+					{{# if parent }}
+					<h3>Type of: <a class="reference" data-term="{{ parent.id }}">{{ parent.name }}</a></h3>
+					{{/if}} {{#each descs}}
+					<p class="desc">{{{this}}}</p>
+					{{/each}} {{# if types.size}}
+					<aside class="types">
+						<h3>Types:</h3>
+						<ul>
+							{{#eachInMap types}}
+							<li class="other"><a class="reference" data-term="{{ this.key }}">{{this.val.name}}</a></li>
+							{{/eachInMap}}
+						</ul>
+					</aside>
+					{{/if}} {{# if refs.see.size}}
+					<aside class="seeother">
+						<h3>See Other:</h3>
+						<ul>
+							{{#eachInMap refs.see}}
+							<li class="other"><a class="reference" data-term="{{ this.key }}">{{this.val.name}}</a></li>
+							{{/eachInMap}}
+						</ul>
+					</aside>
+					{{/if}} {{# if refs.notA.size}}
+					<aside class="disambiguate">
+						<h3>Disambiguation:</h3>
+						<ul>
+							{{#eachInMap refs.notA}}
+							<li class="other"><a class="reference" data-term="{{ this.key }}">{{this.val.name}}</a></li>
+							{{/eachInMap}}
+						</ul>
+					</aside>
+					{{/if}} {{# if tags}}
+					<aside class="tags">
+						<h3>Tags:</h3>
+						<ul>
+							{{#each tags}}
+							<li><a class="tag-link" data-tag="{{tagID}}">{{tag}}</a></li>
+							{{/each}}
+						</ul>
+					</aside>
+					{{/if}}
+				</article>
+			{{/each}}
+			</section>
+		{{/each}}
+	</section>
+</body>
+<script type="text/javascript" src="clientside/lib/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="clientside/lib/jquery.autocomplete.js"></script>
+<script type="text/javascript" src="clientside/lib/observable.class.js"></script>
+<script type="text/javascript" src="clientside/js/gloss.view.js"></script>
+<script type="text/javascript" src="clientside/js/gloss.model.js"></script>
+<script type="text/javascript" src="clientside/js/gloss.js"></script>
+<script type="text/javascript">
+		var myApp = new Gloss({{{byTagStringified}}});
+	</script>
+
+</html>

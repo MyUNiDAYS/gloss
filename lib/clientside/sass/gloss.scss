@@ -1,0 +1,67 @@
+@import "fonts";
+@import "vars";
+@import "header";
+@import "search";
+@import "definition";
+
+*
+{
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	padding: 140px 40px 40px 40px;
+	@extend .undergroundBook;
+	overflow-y:scroll;
+}
+.wlim {
+    max-width:1000px;
+}
+		
+.hidden { display: none;}
+a {
+	cursor:pointer;
+}
+
+
+
+a
+{
+	color: $blue;
+	
+	&:hover
+	{
+		text-decoration: none;
+	}
+}
+
+
+section.definitions
+{
+	width: 1000px;
+	margin: 0 auto;
+
+	section.letter {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		margin-top:-1px;
+	}
+	
+
+	
+	div.separator
+	{
+		flex-basis: 100%;
+		height: 10px;
+		text-indent: -1em;
+		background: #ecf8fd;
+		@extend .undergroundHeavy;
+		color: #bcbec0;
+		line-height: 13px;
+	}
+	
+
+}
+
