@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "copy-dir": "^0.3.0",
-    "yamljs": "^0.2.10"
+    "yamljs": "^0.3.0"
   }
 }
